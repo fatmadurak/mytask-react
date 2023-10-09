@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Routes,Route } from 'react-router-dom';
-import Todos from './Todos/todos/Todos';
+import Products from './Products/Products';
 
 
 
@@ -12,7 +12,7 @@ function App() {
 
     <Routes>
 
-    <Route index element={<Todos/>} />
+    <Route index element={<Products/>} />
    
 
     </Routes>
