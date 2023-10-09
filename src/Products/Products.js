@@ -6,6 +6,7 @@ import "./products.css";
 function Products() {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
+  const [search,setSearch]=useState("")
   const url = `https://northwind.vercel.app/api/products`;
 
   useEffect(() => {
@@ -45,10 +46,22 @@ function Products() {
       });
   }
 
+
+  const searcProduct=()=>{
+
+    let filtered=products.filter((item)=>item.name.toLowerCase().includes(search))
+
+   
+    
+    setProducts(filtered)
+
+
+  }
+
   return (
     <div className='container'>
       <h1>Products</h1>
-      <div>
+      <div className='formController'>
         <label>Product Name:</label>
         <input
           type="text"
@@ -57,11 +70,22 @@ function Products() {
         />
         <button onClick={addProduct}>Add</button>
       </div>
+
+      <div className='formController'>
+      <label>Search Product:</label>
+        <input
+          type="text"
+          onKeyUp={searcProduct}
+          value={search} 
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+      </div>
       <ul>
         {products.map((item) => (
           <li key={item.id} >
             <span>{item.id}-) </span>
-            <Link to={`/products/${item.id}`}>{item.name}</Link>
+            <Link to={`/${item.id}`}>{item.name}</Link>
             <i className="bi bi-x-circle" onClick={() => deleteProduct(item.id)}></i>
           </li>
         ))}
