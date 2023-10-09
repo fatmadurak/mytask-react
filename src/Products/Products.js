@@ -16,7 +16,10 @@ function Products() {
   const getProducts = async () => {
     try {
       const response = await axios.get(url);
-      setProducts(response.data);
+        // Verileri ID'ye göre sırala
+    const sortedProducts = response.data.sort((a, b) => a.id - b.id);
+    setProducts(sortedProducts);
+      
     } catch (error) {
       console.error("Verileri alma hatası:", error);
     }
